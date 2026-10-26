@@ -10,33 +10,73 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CarbonRouteImport } from './routes/carbon'
+import { Route as ElectionRouteImport } from './routes/election'
+import { Route as StadiumRouteImport } from './routes/stadium'
+import { Route as WorldcupRouteImport } from './routes/worldcup'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CarbonRoute = CarbonRouteImport.update({
+  id: '/carbon',
+  path: '/carbon',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ElectionRoute = ElectionRouteImport.update({
+  id: '/election',
+  path: '/election',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StadiumRoute = StadiumRouteImport.update({
+  id: '/stadium',
+  path: '/stadium',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorldcupRoute = WorldcupRouteImport.update({
+  id: '/worldcup',
+  path: '/worldcup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/carbon': typeof CarbonRoute
+  '/election': typeof ElectionRoute
+  '/stadium': typeof StadiumRoute
+  '/worldcup': typeof WorldcupRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/carbon': typeof CarbonRoute
+  '/election': typeof ElectionRoute
+  '/stadium': typeof StadiumRoute
+  '/worldcup': typeof WorldcupRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/carbon': typeof CarbonRoute
+  '/election': typeof ElectionRoute
+  '/stadium': typeof StadiumRoute
+  '/worldcup': typeof WorldcupRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/carbon' | '/election' | '/stadium' | '/worldcup'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/carbon' | '/election' | '/stadium' | '/worldcup'
+  id: '__root__' | '/' | '/carbon' | '/election' | '/stadium' | '/worldcup'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CarbonRoute: typeof CarbonRoute
+  ElectionRoute: typeof ElectionRoute
+  StadiumRoute: typeof StadiumRoute
+  WorldcupRoute: typeof WorldcupRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/carbon': {
+      id: '/carbon'
+      path: '/carbon'
+      fullPath: '/carbon'
+      preLoaderRoute: typeof CarbonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/election': {
+      id: '/election'
+      path: '/election'
+      fullPath: '/election'
+      preLoaderRoute: typeof ElectionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stadium': {
+      id: '/stadium'
+      path: '/stadium'
+      fullPath: '/stadium'
+      preLoaderRoute: typeof StadiumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/worldcup': {
+      id: '/worldcup'
+      path: '/worldcup'
+      fullPath: '/worldcup'
+      preLoaderRoute: typeof WorldcupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CarbonRoute: CarbonRoute,
+  ElectionRoute: ElectionRoute,
+  StadiumRoute: StadiumRoute,
+  WorldcupRoute: WorldcupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
