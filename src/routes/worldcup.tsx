@@ -36,7 +36,7 @@ const snap = () => ({
 function WorldCup() {
   const [role, setRole] = useState<(typeof ROLES)[number]>("Fan");
   const [lang, setLang] = useState("English");
-  const [venue, setVenue] = useState(VENUES[0]);
+  const [venue, setVenue] = useState<string>(VENUES[0]);
   const [s, setS] = useState<ReturnType<typeof snap> | null>(null);
   useEffect(() => { setS(snap()); const t = setInterval(() => setS(snap()), 10000); return () => clearInterval(t); }, []);
   const context = `Role: ${role}. Reply language: ${lang}. Venue: ${venue}. Simulated live snapshot: ${s ? `attendance ${s.attendance}; gate loads ${s.gates.map((g) => `${g.g} ${g.load}%`).join(", ")}; next transit departure wait ${s.transit} min; open incidents ${s.incidents}` : "loading"}.`;

@@ -30,7 +30,7 @@ function Election() {
   const [active, setActive] = useState(0);
   const [done, setDone] = useState<boolean[]>(STEPS.map(() => false));
   const [country, setCountry] = useState("India");
-  const s = STEPS[active];
+  const s = STEPS[active] ?? STEPS[0]!;
 
   return (
     <main>
