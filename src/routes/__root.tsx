@@ -123,6 +123,11 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <nav className="mx-auto flex max-w-6xl flex-wrap gap-2 px-6 pt-6">
+        {([["/", "Event planner"], ["/stadium", "Stadium"], ["/election", "Election guide"], ["/carbon", "Carbon coach"], ["/worldcup", "World Cup 2026"]] as const).map(([to, label]) => (
+          <Link key={to} to={to} className="chip flex-none px-4" activeProps={{ className: "chip chip-on flex-none px-4" }} activeOptions={{ exact: true }}>{label}</Link>
+        ))}
+      </nav>
       <Outlet />
     </QueryClientProvider>
   );
